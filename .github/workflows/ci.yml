@@ -28,6 +28,9 @@ jobs:
       - name: Install Expo CLI
         run: npm install -g expo-cli
 
+      - name: Verify dependencies
+        run: npm ls
+
       - name: Run tests
         run: npm run test:ci
 
