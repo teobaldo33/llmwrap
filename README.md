@@ -44,6 +44,10 @@ Pour configurer CI/CD avec GitHub Actions, assurez-vous d'ajouter les secrets su
 
 Pour générer un token Expo, suivez les instructions sur [Expo Documentation](https://docs.expo.dev/accounts/programmatic-access/).
 
+## Déclencher manuellement des builds et des releases
+
+Pour déclencher manuellement des builds et des releases, allez dans l'onglet "Actions" de votre dépôt GitHub, sélectionnez le workflow "CI/CD" et cliquez sur "Run workflow".
+
 ## Learn more
 
 To learn more about developing your project with Expo, look at the following resources:
