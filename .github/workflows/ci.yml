@@ -26,7 +26,7 @@ jobs:
         run: npm install
 
       - name: Run tests
-        run: npm test
+        run: npm run test:ci
 
       - name: Build APK
         run: expo build:android --no-wait
