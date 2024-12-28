@@ -21,7 +21,9 @@ jobs:
           token: ${{ secrets.EXPO_TOKEN }}
       - name: Install dependencies
         run: npm ci
+      - name: Install expo-cli globally
+        run: npm install -g expo-cli
       - name: Install Expo Dev Client  
-        run: expo install expo-dev-client
+        run: npx expo install expo-dev-client
       - name: Build on EAS
         run: npx eas build --profile development --platform android
