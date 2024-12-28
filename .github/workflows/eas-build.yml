@@ -1,4 +1,4 @@
-name: EAS Build
+name: EAS Build and Release
 on:
   workflow_dispatch:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 jobs:
   build:
-    name: Install and build
+    name: Build and Release
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -23,3 +23,17 @@ jobs:
         run: npm ci
       - name: Build on EAS
         run: eas build --profile development --platform android --non-interactive --no-wait
+      - name: Get build URL
+        id: get_build_url
+        run: |
+          BUILD_URL=$(eas build:list --status=in-queue,in-progress,errored,finished --limit=1 --json | jq -r '.[0].artifacts.buildUrl')
+          echo "BUILD_URL=$BUILD_URL" >> $GITHUB_ENV
+      - name: Setup Git
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+      - name: Semantic Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          EXPO_BUILD_URL: ${{ env.BUILD_URL }}
+        run: npx semantic-release
