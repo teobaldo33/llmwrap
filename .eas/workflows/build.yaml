@@ -1,0 +1,6 @@
+jobs:
+  build:
+    type: build
+    params:
+      platform: android | ios
+      profile: string # default: production
