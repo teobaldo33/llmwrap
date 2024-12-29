@@ -20,10 +20,6 @@ jobs:
         run: yarn global add expo-cli
       - name: Install dependencies
         run: yarn install --frozen-lockfile
-      - name: Login to Expo
-        env:
-          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
-        run: expo login --token $EXPO_TOKEN
       - name: Build Expo project
         run: expo build:android --non-interactive
       - name: Upload APK to GitHub Releases
