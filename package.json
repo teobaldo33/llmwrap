@@ -61,6 +61,18 @@
     "webpack": "^5.59.0"
   },
   "release": {
+    "branches": [
+      "main"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      "@semantic-release/github",
+      "@semantic-release/git",
+      "@semantic-release/exec"
+    ],
     "verifyConditions": [
         "semantic-release-expo",
         "@semantic-release/changelog",
