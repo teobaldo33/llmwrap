@@ -19,7 +19,7 @@ jobs:
       - name: Install Expo CLI
         run: npm install -g expo-cli
       - name: Install dependencies
-        run: npm ci
+        run: npm ci && yarn
       - name: Build Expo project
         run: expo build:android --no-wait
       - name: Upload APK to GitHub Releases
