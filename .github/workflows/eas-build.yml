@@ -15,13 +15,17 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 18.x
-          cache: npm
+          cache: yarn
       - name: Install Expo CLI
-        run: npm install -g expo-cli
+        run: yarn global add expo-cli
       - name: Install dependencies
-        run: npm ci && yarn
+        run: yarn install --frozen-lockfile
+      - name: Login to Expo
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+        run: expo login --token $EXPO_TOKEN
       - name: Build Expo project
-        run: npx expo build:android --no-wait
+        run: expo build:android --non-interactive
       - name: Upload APK to GitHub Releases
         uses: actions/upload-artifact@v3
         with:
