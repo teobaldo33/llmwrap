@@ -60,18 +60,29 @@
     "webpack": "^5.59.0"
   },
   "release": {
-    "branches": [
-      "main"
+    "verifyConditions": [
+        "semantic-release-expo",
+        "@semantic-release/changelog",
+        "@semantic-release/git",
+        "@semantic-release/npm"
     ],
-    "plugins": [
-      "@semantic-release/commit-analyzer",
-      "@semantic-release/release-notes-generator",
-      "@semantic-release/changelog",
-      "@semantic-release/npm",
-      "@semantic-release/github",
-      "@semantic-release/git",
-      "@semantic-release/exec"
-    ]
-  },
+    "prepare": [
+        "semantic-release-expo",
+        "@semantic-release/changelog",
+        "@semantic-release/npm",
+        {
+            "path": "@semantic-release/git",
+            "assets": [
+                "CHANGELOG.md",
+                "package.json",
+                "package-lock.json",
+                "app.json"
+            ]
+        }
+    ],
+    "publish": false,
+    "success": false,
+    "fail": false
+},
   "private": true
 }
